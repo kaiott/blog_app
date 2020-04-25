@@ -12,7 +12,8 @@ from django.views.generic import (
 	DeleteView
 	)
 from .models import Post
-
+from .serializers import PostSerializer
+from rest_framework import viewsets
 
 
 def home(request):
@@ -20,6 +21,11 @@ def home(request):
 		'posts': Post.objects.all()
 	}
 	return render(request, 'blog/home.html', context)
+	
+
+class PostView(viewsets.ModelViewSet):
+	queryset = Post.objects.all()
+	serializer_class = PostSerializer
 	
 
 class PostListView(ListView):
