@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from .views import (
 	PostListView, 
 	PostDetailView,
@@ -6,13 +6,8 @@ from .views import (
 	PostUpdateView,
 	PostDeleteView,
     UserPostListView,
-    PostView
 )
 from . import views
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register('posts', PostView)
 
 urlpatterns = [
     path('', PostListView.as_view(), name='blog-home'),
@@ -22,5 +17,4 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='blog-about'),
-    path('blog', include(router.urls)),
 ]
