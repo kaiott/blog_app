@@ -26,7 +26,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+	image_url = serializers.SerializerMethodField()
+	username = serializers.SerializerMethodField()
+
 	class Meta:
 		model = Profile
-		fields = ('user', )
+		fields = ('id', 'user', 'username', 'image_url')
 
+	def get_image_url(self, instance):
+		return instance.image.url
+
+	def get_username(self, instance):
+		return instance.user.username
