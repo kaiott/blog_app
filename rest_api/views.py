@@ -3,12 +3,13 @@ from django.contrib.auth.models import User
 from blog.models import Post
 from users.models import Profile
 from .serializers import PostSerializer, UserSerializer, ProfileSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 class PostView(viewsets.ModelViewSet):
 	# /permissions/?groups=REPLACE_ID_HERE
 	model = Post
 	serializer_class = PostSerializer
+	permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 	queryset = Post.objects.all().order_by('-date_posted')
 

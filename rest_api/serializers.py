@@ -19,6 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
 	def get_author_pic_url(self, instance):
 		return instance.author.profile.image.url
 
+
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
