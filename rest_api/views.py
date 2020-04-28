@@ -9,7 +9,6 @@ class PostView(viewsets.ModelViewSet):
 	# /permissions/?groups=REPLACE_ID_HERE
 	model = Post
 	serializer_class = PostSerializer
-	permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 	queryset = Post.objects.all().order_by('-date_posted')
 
